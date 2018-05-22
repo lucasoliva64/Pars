@@ -1,17 +1,60 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+	<ion-navbar clear>
+		<ion-title>Festas</ion-title>
+		<ion-buttons start>
+			<button ion-button icon-only (click)="perfil()">
+        <ion-icon name="contact"></ion-icon>          
+      </button>
+			<button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>    
+      </button>
+		</ion-buttons>
+	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+	<ion-card *ngFor="let c of festas | async" (click)="detalhes(c.id, c.Titulo)">
+
+		<ion-item>
+			<ion-avatar item-start>
+				<img src="https://kanto.legiaodosherois.com.br/w750-h393-gnw-cfill-q80/wp-content/uploads/2017/04/legiao_ue1qm9fOCxZKzARd5PnoMDjytrG_sbLFlcEB4kN2YX.png.jpeg">
+			</ion-avatar>
+			<h2>{{c.Titulo}}</h2>
+			<p>Aberto das {{c.HorarioInicio}}h as {{c.HorarioFim}}h</p>
+		</ion-item>
+
+
+
+		<img src="https://kanto.legiaodosherois.com.br/w750-h393-gnw-cfill-q80/wp-content/uploads/2017/04/legiao_ue1qm9fOCxZKzARd5PnoMDjytrG_sbLFlcEB4kN2YX.png.jpeg">
+
+		<ion-card-content>
+			<h4>
+				Endereço: {{ c.Local }}
+			</h4>
+
+		</ion-card-content>
+
+		<ion-row>
+			<ion-col>
+				<button ion-button icon-left clear small>
+        <ion-icon name="people"></ion-icon>
+        <div> 
+          9 pessoas
+        </div>
+      </button>
+			</ion-col>
+			<ion-col>
+				<button ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>4 Comments</div>
+      </button>
+			</ion-col>
+
+		</ion-row>
+
+	</ion-card>
+
+
+
 </ion-content>

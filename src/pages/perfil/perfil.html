@@ -1,0 +1,42 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Perfil</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<form #f="ngForm" (ngSubmit)="salvar(f)">
+
+		<ion-list *ngFor="let c of Perfil | async">
+			<ion-item>
+				<ion-avatar (click)="abrirCamera()">
+					<img *ngIf='imagem != undefined' [src]="imagem" alt="">
+					<img *ngIf="imagem == undefined && c.imagem != undefined" [src]="c.imagem">
+					<img *ngIf="imagem == undefined && c.imagem == undefined" src="https://openclipart.org/image/800px/svg_to_png/247319/abstract-user-flat-3.png">
+				</ion-avatar>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>Nome</ion-label>
+				<ion-input type="text" name="nome" [(ngModel)]="c.nome"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Genero</ion-label>
+				<ion-select name="genero" [(ngModel)]="c.genero">
+					<ion-option value="Feminino">Feminino</ion-option>
+					<ion-option value="Masculino">Masculino</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>Sobre</ion-label>
+				<ion-input type="text" name="sobre" [(ngModel)]="c.sobre"></ion-input>
+			</ion-item>
+
+
+		</ion-list>
+		<ion-buttons>
+			<button ion-button block>
+				Atualizar
+			</button>
+		</ion-buttons>
+	</form>
+</ion-content>

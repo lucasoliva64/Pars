@@ -1,0 +1,45 @@
+<ion-header>
+
+	<ion-navbar clear>
+		<ion-title *ngFor="let c of contato | async">{{ c.nome }}</ion-title>
+		<ion-buttons start>
+
+			<button ion-button icon-only (click)="logout()">
+				<ion-icon name="exit"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list *ngFor="let c of contato | async">
+		<div class="bg-img" background="">
+			<img [src]="c.imagem">
+		</div>
+		<br>
+		<ion-item>
+			<ion-buttons>
+				<button ion-button icon-only>
+					<p *ngIf="c.genero == 'Masculino'">
+						<ion-icon name="male"></ion-icon>
+					</p>
+					<p *ngIf="c.genero == 'Feminino'">
+						<ion-icon name="female"></ion-icon>
+					</p>
+				</button>
+			</ion-buttons>
+		</ion-item>
+		<ion-buttons>
+			<button ion-button icon-only (click)="addContato(c.uid)">
+				<ion-icon name="add">
+				</ion-icon>
+			</button>
+		</ion-buttons>
+
+
+	</ion-list>
+
+
+
+
+</ion-content>

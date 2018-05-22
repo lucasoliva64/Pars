@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar clear>
+        <ion-title>Festas</ion-title>
+        <ion-buttons start>
+        <button ion-button icon-only>
+          <ion-icon name="contact"></ion-icon>
+         
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <form #f="ngForm" (ngSubmit)="AdicionarFesta(f)">
+    <ion-list inset>
+      <ion-item>
+        <ion-label floating>Titulo</ion-label>
+        <ion-input type="text" name="Titulo" ngModel ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating >Dias de Funcionamento</ion-label>
+        <ion-input type="text" name="DiasFuncionamento" ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Local</ion-label>
+        <ion-input type="text" name="Local" ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Horario de inicio</ion-label>
+        <ion-input type="number" name="HorarioInicio" ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Horario termino</ion-label>
+        <ion-input type="number" name="HorarioFim" ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Valor</ion-label>
+        <ion-input type="number" name="Valor" ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Descrição</ion-label>
+        <ion-input type="text" name="Descricao" ngModel></ion-input>
+      </ion-item>
+      <br>
+          <ion-buttons>
+            <button ion-button block> 
+              Criar Evento
+            </button>
+          </ion-buttons>
+    </ion-list>
+    </form>
+  </ion-content>

@@ -1,0 +1,129 @@
+<ion-header>
+	<ion-navbar clear>
+		<ion-title>{{ festaTitulo }}</ion-title>
+		<ion-buttons start>
+			<button ion-button icon-only (click)="perfil()">
+				<ion-icon name="contact"></ion-icon>
+
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-fab top right>
+		<button ion-fab (click)="confirmar()">
+			<ion-icon name="checkmark-circle"></ion-icon>
+		</button>
+	</ion-fab>
+	<div class="bg-img" background="">
+		<img src="https://kanto.legiaodosherois.com.br/w750-h393-gnw-cfill-q80/wp-content/uploads/2017/04/legiao_ue1qm9fOCxZKzARd5PnoMDjytrG_sbLFlcEB4kN2YX.png.jpeg">
+	</div>
+
+	<div>
+		<ion-segment [(ngModel)]="detalhes">
+			<ion-segment-button value="sobre">
+				Sobre
+			</ion-segment-button>
+			<ion-segment-button value="pessoas">
+				Pessoas
+			</ion-segment-button>
+			<ion-segment-button value="comentarios">
+				Comentarios
+			</ion-segment-button>
+		</ion-segment>
+	</div>
+
+	<div [ngSwitch]="detalhes">
+
+
+
+		<ion-list *ngSwitchCase="'pessoas'">
+			<ion-item>
+
+				<ion-list>
+					<ion-list-header>
+						Estão no local
+					</ion-list-header>
+
+					<ion-item (click)="detalhePerfil(c.uid)" *ngFor="let c of listaConfirmados | async">
+						<ion-avatar item-start>
+							<img [src]="c.imagem" />
+						</ion-avatar>
+						<h2>{{c.nome}}</h2>
+					</ion-item>
+				</ion-list>
+
+			</ion-item>
+		</ion-list>
+
+		<ion-list *ngSwitchCase="'sobre'">
+			<ion-item *ngFor="let i of festa | async">
+				<h5>
+					<strong>Dias de Funcionamento:</strong> {{ i.DiasFuncionamento }}</h5>
+				<h5>
+					<strong>Horario de Funcionamento:</strong> das {{ i.HorarioInicio }} as {{ i.HorarioFim }}</h5>
+
+				<h6>{{ i.Descricao }}</h6>
+
+				<h5>
+					<strong>Valor da Entrada: </strong> R$ {{ i.Valor }}
+				</h5>
+
+			</ion-item>
+
+			<div id="map_canvas">
+
+			</div>
+			
+		</ion-list>
+
+		<ion-list *ngSwitchCase="'comentarios'">
+			<ion-item>
+				<form #f="ngForm" (ngSubmit)="enviarComentario(f)">
+					<ion-item>
+						<h2>
+							<strong>Comentar</strong>
+						</h2>
+					</ion-item>
+					<ion-item>
+						<h2>
+							<strong>Classificação</strong>
+						</h2>
+					</ion-item>
+					<ion-item>
+						<ion-select name="Classificacao" ngModel>
+							<ion-option value="Mediano">Mediano </ion-option>
+							<ion-option value="Bom">Bom </ion-option>
+							<ion-option value="Muito Bom">Muito Bom</ion-option>
+						</ion-select>
+					</ion-item>
+					<ion-item>
+						<ion-input name="Comentario" placeholder="Insira seu comentario" type="text" ngModel></ion-input>
+					</ion-item>
+					<ion-buttons>
+						<button ion-button block>enviar</button>
+					</ion-buttons>
+				</form>
+
+				<ion-list>
+					<h1>
+						<strong>Comentarios</strong>
+					</h1>
+					<ion-item *ngFor="let c of Comentarios | async">
+						<ion-avatar>
+							<img [src]="c.imagem" />
+						</ion-avatar>
+						<h2>{{c.nome}}</h2>
+						<h3>{{c.classificacao}}</h3>
+						<p>"{{c.comentario}}"</p>
+					</ion-item>
+				</ion-list>
+
+
+
+			</ion-item>
+		</ion-list>
+
+	</div>
+</ion-content>

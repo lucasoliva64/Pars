@@ -1,0 +1,42 @@
+<ion-content>
+
+  <div id="imgpos" ion-fixed padding>
+    <br>
+
+    <img id="imagem" src="https://firebasestorage.googleapis.com/v0/b/ionic-festa.appspot.com/o/pars.jpeg?alt=media&token=a7c0576c-b4e6-464b-a9ff-2d3d2bd1d840">
+
+    <h4>Acesse sua Conta</h4>
+
+    <form #f="ngForm" (ngSubmit)="entrar(f)">
+      <ion-item id="transparente">
+        <ion-input placeholder="Email" type="text" name="email" ngModel></ion-input>
+      </ion-item>
+      <ion-item id="transparente">
+        <ion-input placeholder="Senha" type="password" name="senha" ngModel></ion-input>
+      </ion-item>
+      <div padding>
+        <button ion-button color="dark" block>Logar</button>
+        <br>
+        <button padding ion-button block color="dark" type="button" (click)="cadastrar()">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+</ion-content>
+
+
+<ion-slides autoplay="2000" loop="true" speed="2000">
+
+
+
+
+  <ion-slide id="teste" style="background-image: url(https://wallpapersmug.com/large/f4f502/party-lights-circles-colorful-bokeh.jpg)">
+
+  </ion-slide>
+
+
+
+  <ion-slide id="teste" style="background-image: url(https://i.ytimg.com/vi/THjEclMFmRU/maxresdefault.jpg)">
+
+  </ion-slide>
+
+</ion-slides>

@@ -1,0 +1,74 @@
+<ion-content>
+  <div id="imgpos" ion-fixed>
+    <br>
+    <img id="imagem" src="https://firebasestorage.googleapis.com/v0/b/ionic-festa.appspot.com/o/pars.jpeg?alt=media&token=a7c0576c-b4e6-464b-a9ff-2d3d2bd1d840">
+
+    <h4>
+      <font color="black">Cadastre Agora</font>
+    </h4>
+
+    <form #f="ngForm" (ngSubmit)="cadastrarUsuario(f)">
+      <ion-item id="transparente">
+        <ion-input placeholder="Nome Completo" type="text" name="nome" ngModel></ion-input>
+      </ion-item>
+
+      <ion-item id="transparente">
+
+        <ion-input placeholder="Seu Email" type="text" name="email" ngModel></ion-input>
+      </ion-item>
+
+      <ion-item id="transparente">
+
+        <ion-input placeholder="Nova Senha" type="password" name="senha" ngModel></ion-input>
+      </ion-item>
+
+
+      <!--
+<h3>Sexo</h3>
+<div>
+<ion-list radio-group [(ngModel)]="relationship">
+  
+  <table>
+    <tr>
+      <td width="150">
+  
+  <ion-item>    
+    <ion-label>Masculino</ion-label>
+    <ion-radio value="blue" checked></ion-radio>
+  </ion-item>
+      </td>
+      <td width="150">
+  <ion-item>
+    <ion-label>Feminino</ion-label>
+    <ion-radio value="pink"></ion-radio>
+  </ion-item>
+      </td>
+      <td width="150">
+  <ion-item>
+    <ion-label>Outros</ion-label>
+    <ion-radio value="other" [disabled]="isDisabled" (click)="showRadio()"></ion-radio>
+  </ion-item>
+      </td>
+    </tr>
+  </table>
+</ion-list>
+</div>
+-->
+      <div padding>
+        <button ion-button color="dark" block type="submit">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+
+</ion-content>
+
+<ion-slides autoplay="2000" loop="true" speed="2000">
+
+  <ion-slide id="teste" style="background-image: url(https://wallpapersmug.com/large/f4f502/party-lights-circles-colorful-bokeh.jpg)">
+  </ion-slide>
+
+  <ion-slide id="teste" style="background-image: url(https://i.ytimg.com/vi/THjEclMFmRU/maxresdefault.jpg)">
+
+  </ion-slide>
+
+</ion-slides>
