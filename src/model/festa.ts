@@ -7,10 +7,12 @@ export class Festa {
     public Descricao: string;
     public Local: string;
     public Valor: number;
+    public imgCapa: string;
+    public imgAvatar: string;
   
   
   
-    constructor(id: string, Titulo: string, HorarioInicio: string, HorarioFim: string, DiasFuncionamento: string, Descricao: string, Local: string, Valor: number ) {
+    constructor(id: string, Titulo: string, HorarioInicio: string, HorarioFim: string, DiasFuncionamento: string, Descricao: string, Local: string, Valor: number, imgCapa: string, imgAvatar: string ) {
       this.id = id;
       this.Titulo = Titulo;
       this.HorarioInicio = HorarioInicio;
@@ -19,5 +21,7 @@ export class Festa {
       this.Descricao = Descricao;
       this.Local = Local;
       this.Valor = Valor;
+      this.imgCapa = imgCapa;
+      this.imgAvatar = imgAvatar;
     }
   }

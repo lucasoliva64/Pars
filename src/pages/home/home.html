@@ -3,11 +3,11 @@
 		<ion-title>Festas</ion-title>
 		<ion-buttons start>
 			<button ion-button icon-only (click)="perfil()">
-        <ion-icon name="contact"></ion-icon>          
-      </button>
+				<ion-icon name="contact"></ion-icon>
+			</button>
 			<button ion-button icon-only (click)="logout()">
-        <ion-icon name="exit"></ion-icon>    
-      </button>
+				<ion-icon name="exit"></ion-icon>
+			</button>
 		</ion-buttons>
 	</ion-navbar>
 </ion-header>
@@ -36,21 +36,13 @@
 		</ion-card-content>
 
 		<ion-row>
-			<ion-col>
-				<button ion-button icon-left clear small>
-        <ion-icon name="people"></ion-icon>
-        <div> 
-          9 pessoas
-        </div>
-      </button>
-			</ion-col>
-			<ion-col>
-				<button ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>4 Comments</div>
-      </button>
-			</ion-col>
+			<ion-col text-right>
+				<button ion-button clear small color="dark" icon-end>
+					Saiba mais
+					<ion-icon name='more'></ion-icon>
 
+				</button>
+			</ion-col>
 		</ion-row>
 
 	</ion-card>

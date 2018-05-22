@@ -3,7 +3,6 @@ import { EmojiPickerComponent } from './../components/emoji-picker/emoji-picker'
 import { ChatService } from './../providers/chat-service';
 import { EmojiProvider } from './../providers/emoji';
 import { Camera } from '@ionic-native/camera';
-import { GoogleMaps } from '@ionic-native/google-maps'
 import { AddFestaPage } from './../pages/add-festa/add-festa';
 import { AddUsuarioPage } from './../pages/add-usuario/add-usuario';
 import { ChatPage } from './../pages/chat/chat';
@@ -82,8 +81,6 @@ const config = {
     StatusBar,
     SplashScreen,
     Camera,    
-    Geolocation,
-    GoogleMaps,
     EmojiProvider,
     ChatService
   

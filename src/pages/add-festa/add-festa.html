@@ -1,24 +1,26 @@
 <ion-header>
   <ion-navbar clear>
-        <ion-title>Festas</ion-title>
-        <ion-buttons start>
-        <button ion-button icon-only>
-          <ion-icon name="contact"></ion-icon>
-         
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content>
-    <form #f="ngForm" (ngSubmit)="AdicionarFesta(f)">
+    <ion-title>Festas</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="perfil()">
+        <ion-icon name="contact"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="AdicionarFesta(f)">
     <ion-list inset>
       <ion-item>
         <ion-label floating>Titulo</ion-label>
-        <ion-input type="text" name="Titulo" ngModel ></ion-input>
+        <ion-input type="text" name="Titulo" ngModel></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating >Dias de Funcionamento</ion-label>
+        <ion-label floating>Dias de Funcionamento</ion-label>
         <ion-input type="text" name="DiasFuncionamento" ngModel></ion-input>
       </ion-item>
       <ion-item>
@@ -41,12 +43,36 @@
         <ion-label floating>Descrição</ion-label>
         <ion-input type="text" name="Descricao" ngModel></ion-input>
       </ion-item>
-      <br>
-          <ion-buttons>
-            <button ion-button block> 
-              Criar Evento
-            </button>
-          </ion-buttons>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-buttons>
+              <a ion-button (click)="abrirCameraFesta()">
+                Add Imagem
+              </a>
+            </ion-buttons>
+          </ion-col>
+          <ion-col>
+
+          </ion-col>
+          <ion-col>
+
+            <ion-buttons>
+              <a ion-button (click)="abrirCameraAvatar()">
+                Add Avatar
+              </a>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+      <ion-buttons>
+        <button ion-button block>
+          Criar Evento
+        </button>
+      </ion-buttons>
     </ion-list>
-    </form>
-  </ion-content>
+  </form>
+</ion-content>

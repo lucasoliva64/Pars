@@ -9,9 +9,6 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { Usuario } from '../../model/usuario';
 import { NavParams } from 'ionic-angular';
 import { DetalhesPerfilPage } from '../detalhes-perfil/detalhes-perfil';
-import { Geolocation } from '@ionic-native/geolocation';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, Marker, Circle, MyLocationOptions, MyLocation, LatLng, GoogleMapOptions } from '@ionic-native/google-maps';
-
 
 
 
@@ -21,20 +18,10 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent, Marker, Circle, MyLocationOptio
 })
 export class DetalhesFestaPage {
 
-  map: GoogleMap;
-  lat: any;
-  lng: any;
-  acr: any;
-
   detalhes: string = "sobre";
   festaId: string;
   festaTitulo: string;
   public Comentarios: Observable<Comentarios[]>;
-
-  ionViewDidLoad() {
-    this.loadMap();
-  }
-
 
   public listaConfirmados: Observable<Usuario[]>;
   public festa: Observable<Festa[]>;
@@ -50,9 +37,7 @@ export class DetalhesFestaPage {
     public db: AngularFirestore,
     public afAuth: AngularFireAuth,
     private navParams: NavParams,
-    public loadCtrl: LoadingController,
-    private geolocation: Geolocation) {
-
+    public loadCtrl: LoadingController) {
     if (this.hora >= 0 && this.hora <= 3) {
       this.dia = this.dia - 1;
     }
@@ -107,42 +92,5 @@ export class DetalhesFestaPage {
 
     console.log(id, uid, this.data, this.hora);
     this.db.collection('usuarios').doc(uid).update({ [id]: this.data });
-  }
-
-
-
-  loadMap() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      let mapOptions: GoogleMapOptions = {
-        camera: {
-          target: {
-            lat: resp.coords.latitude,
-            lng: resp.coords.longitude
-          },
-          zoom: 500
-        }
-      };
-
-      this.map = GoogleMaps.create('map_canvas', mapOptions);
-      let marker: Marker = this.map.addMarkerSync({
-        title: '@ionic-native/google-maps',
-        icon: 'red',
-        animation: 'DROP',
-        position: {
-          lat: resp.coords.latitude,
-          lng: resp.coords.longitude
-        },
-        draggable: true
-      });
-
-      this.lat = resp.coords.latitude;
-      this.lng = resp.coords.longitude;
-      this.acr = marker.getPosition;
-      // resp.coords.longitude
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
-    // Create a map after the view is ready and the native platform is ready.
-
   }
 }
