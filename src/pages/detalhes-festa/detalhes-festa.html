@@ -1,11 +1,13 @@
 <ion-header>
 	<ion-navbar clear>
-		<ion-title>{{ festaTitulo }}</ion-title>
-		<ion-buttons start>
-			<button ion-button icon-only (click)="perfil()">
-				<ion-icon name="contact"></ion-icon>
-
-			</button>
+		<ion-title *ngFor="let i of festa | async">{{ i.Titulo }}</ion-title>
+<ion-buttons start>
+			<button ion-button icon-only (click)="perfil2()">
+        <ion-icon name="contact"></ion-icon>          
+      </button>
+			<button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>    
+      </button>
 		</ion-buttons>
 	</ion-navbar>
 </ion-header>
@@ -16,8 +18,8 @@
 			<ion-icon name="checkmark-circle"></ion-icon>
 		</button>
 	</ion-fab>
-	<div class="bg-img" background="">
-		<img src="https://kanto.legiaodosherois.com.br/w750-h393-gnw-cfill-q80/wp-content/uploads/2017/04/legiao_ue1qm9fOCxZKzARd5PnoMDjytrG_sbLFlcEB4kN2YX.png.jpeg">
+	<div class="bg-img" background="" *ngFor="let i of festa | async">
+		<img [src]="i.imgCapa">
 	</div>
 
 	<div>

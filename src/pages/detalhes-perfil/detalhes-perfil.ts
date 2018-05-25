@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { NavController } from 'ionic-angular';
 import { Usuario } from '../../model/usuario';
 import { NavParams } from 'ionic-angular';
+import { PerfilPage } from '../perfil/perfil';
 
 
 @Component({
@@ -26,6 +27,15 @@ export class DetalhesPerfilPage {
       ('usuarios', ref => ref.where('uid', '==', cid))
       .valueChanges();
   }
+  perfil() {
+    this.navCtrl.push(PerfilPage); //pop()
+
+  }
+
+  public logout() : void {
+    this.afAuth.auth.signOut();
+  }
+  
 
   addContato(id) {
 

@@ -49,8 +49,8 @@ export class PerfilPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       allowEdit: true,
-      targetHeight: 200,
-      targetWidth: 200,
+      targetHeight: 400,
+      targetWidth: 400,
       saveToPhotoAlbum: false
     }
 

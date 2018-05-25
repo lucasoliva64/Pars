@@ -1,3 +1,4 @@
+import { AddCidadePage } from './../pages/add-cidade/add-cidade';
 import { RelativeTime } from './../pipes/relative-time';
 import { EmojiPickerComponent } from './../components/emoji-picker/emoji-picker';
 import { ChatService } from './../providers/chat-service';
@@ -49,6 +50,7 @@ const config = {
     DetalhesPerfilPage,
     ChatPage,
     RelativeTime,
+    AddCidadePage,
     EmojiPickerComponent,
     AddUsuarioPage,
     AddFestaPage,
@@ -71,6 +73,7 @@ const config = {
     ChatPage,
     AddUsuarioPage,
     AddFestaPage,
+    AddCidadePage,
     DetalhesFestaPage,
     EmojiPickerComponent,
     DetalhesPerfilPage,

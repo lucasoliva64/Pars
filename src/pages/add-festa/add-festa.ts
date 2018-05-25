@@ -1,3 +1,6 @@
+import { AddCidadePage } from './../add-cidade/add-cidade';
+import { Observable } from 'rxjs/Observable';
+import { Cidades } from './../../model/cidades';
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
@@ -14,9 +17,10 @@ import * as firebase from 'firebase';
   templateUrl: 'add-festa.html',
 })
 export class AddFestaPage {
+
   imagemAvatar: any;
   imagemFesta: any;
-
+  cidades: Observable<Cidades[]>;
 
   constructor(public navCtrl: NavController,
     public db: AngularFirestore,
@@ -25,7 +29,9 @@ export class AddFestaPage {
     private camera: Camera,
     public alertuCrtl: AlertController,
 
-  ) { }
+  ) {
+      this.cidades = db.collection<Cidades>('cidades').valueChanges();
+   }
 
   public logout(): void {
     this.afAuth.auth.signOut();
@@ -35,6 +41,10 @@ export class AddFestaPage {
   perfil() {
     this.navCtrl.push(PerfilPage); //pop()
 
+  }
+
+  addCidade(){
+    this.navCtrl.push(AddCidadePage); 
   }
 
 
@@ -88,42 +98,44 @@ export class AddFestaPage {
   public AdicionarFesta(form: NgForm) {
     let loading = this.loadCtrl.create();
     loading.present();
-
+    console.log(form.value.Cidade);
 
 
     let festa =
       {
         uid: this.afAuth.auth.currentUser.uid,
         Titulo: form.value.Titulo,
+        Cidade: form.value.Cidade,
         DiasFuncionamento: form.value.DiasFuncionamento,
         Local: form.value.Local,
         HorarioInicio: form.value.HorarioInicio,
         HorarioFim: form.value.HorarioFim,
         Valor: form.value.Valor,
-        Descricao: form.value.Descricao,
+        Descricao: form.value.Descricao
 
       }
 
     this.db.collection('festas').add(festa).then((ref) => {
 
-      let nomeAvatar = ref.id + ".jpg";
-      var imgAvatarRef = firebase.app().storage('gs://ionic-festa.appspot.com').ref().child('festa').child('avatar').child(nomeAvatar);
+      let imagemFesta = ref.id + ".jpg";
+      var imgAvatarRef = firebase.app().storage('gs://ionic-festa.appspot.com').ref().child('festas').child('avatar').child(imagemFesta);
       var taskImgAvatar = imgAvatarRef.putString(this.imagemAvatar, 'data_url');
      
 
-      let nomeFesta = ref.id + ".jpg";
-      var imgFestaRef = firebase.app().storage('gs://ionic-festa.appspot.com').ref().child('festa').child('capa').child(nomeFesta);
-      var taskImgCapa = imgAvatarRef.putString(this.imagemFesta, 'data_url');
+      var imgFestaRef = firebase.app().storage('gs://ionic-festa.appspot.com').ref().child('festas').child('capa').child(imagemFesta);
+      var taskImgCapa = imgFestaRef.putString(this.imagemFesta, 'data_url');
+      var docRef= ref.id;
+      var urlAvatar
+      var urlFesta;
 
-     
       taskImgCapa.then().then(res => {
-        var urlFesta = taskImgCapa.snapshot.downloadURL;
+        urlFesta = taskImgCapa.snapshot.downloadURL;
         console.log("imagem Capa enviada" + urlFesta);
         taskImgAvatar.then().then(res => {
-          var urlAvatar = taskImgAvatar.snapshot.downloadURL;
-          console.log("imagem Avatar enviada")
-          this.db.collection('festas').doc(ref.id).update({
-             id: ref.id,
+         urlAvatar = taskImgAvatar.snapshot.downloadURL;
+          console.log("imagem Avatar enviada" + urlAvatar)
+          this.db.collection('festas').doc(docRef).update({
+             id: docRef,
              imgCapa: urlFesta,
              imgAvatar: urlAvatar
             })

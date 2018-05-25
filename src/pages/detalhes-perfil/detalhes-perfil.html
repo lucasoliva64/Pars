@@ -3,10 +3,12 @@
 	<ion-navbar clear>
 		<ion-title *ngFor="let c of contato | async">{{ c.nome }}</ion-title>
 		<ion-buttons start>
-
+			<button ion-button icon-only (click)="perfil()">
+				<ion-icon name="contact"></ion-icon>
+			</button>
 			<button ion-button icon-only (click)="logout()">
-        <ion-icon name="exit"></ion-icon>    
-      </button>
+				<ion-icon name="exit"></ion-icon>
+			</button>
 		</ion-buttons>
 	</ion-navbar>
 </ion-header>

@@ -11,51 +11,15 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
-
-
-
-
+<ion-avatar>
+<img  [src]="imagemAvatar" alt="">
+</ion-avatar>
+<img  [src]="imagemFesta" alt="">
 
 
 <ion-content>
   <form #f="ngForm" (ngSubmit)="AdicionarFesta(f)">
     <ion-list inset>
-
-
-      <ion-card>
-
-        <ion-item>
-          <ion-avatar item-start>
-            <img [src]="imagemAvatar">
-          </ion-avatar>
-          <h2>Exemplo de Festa</h2>
-          <p>Horario:</p>
-        </ion-item>
-
-
-
-        <img [src]="imagemFesta">
-
-        <ion-card-content>
-          <h4>
-            Endereço:
-          </h4>
-
-        </ion-card-content>
-
-        <ion-row>
-          <ion-col text-right>
-          </ion-col>
-        </ion-row>
-
-      </ion-card>
-
-
-
-
-
-
       <ion-item>
         <ion-label floating>Titulo</ion-label>
         <ion-input type="text" name="Titulo" ngModel></ion-input>
@@ -64,17 +28,6 @@
         <ion-label floating>Dias de Funcionamento</ion-label>
         <ion-input type="text" name="DiasFuncionamento" ngModel></ion-input>
       </ion-item>
-
-      <ion-list>
-          <ion-item>
-            <ion-label>Cidades</ion-label>
-            <ion-select name="Cidade" ngModel>       
-              <ion-option *ngFor="let c of cidades | async" [value]="c.cidade">{{ c.cidade }}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-        <a ion-button block (click)="addCidade()">Adicionar cidade</a>
-
       <ion-item>
         <ion-label floating>Local</ion-label>
         <ion-input type="text" name="Local" ngModel></ion-input>
@@ -96,28 +49,20 @@
         <ion-input type="text" name="Descricao" ngModel></ion-input>
       </ion-item>
 
-
-
-
-
-
-
-      <br>
-
-
-
-
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-buttons>
               <a ion-button (click)="abrirCameraFesta()">
-                Add Capa
+                Add Imagem
               </a>
             </ion-buttons>
           </ion-col>
-          <ion-col></ion-col>
           <ion-col>
+
+          </ion-col>
+          <ion-col>
+
             <ion-buttons>
               <a ion-button (click)="abrirCameraAvatar()">
                 Add Avatar
@@ -126,19 +71,13 @@
           </ion-col>
         </ion-row>
 
-
-
-
-
-        <ion-buttons>
-          <button ion-button block>
-            Criar Evento
-          </button>
-        </ion-buttons>
-
-
-
       </ion-grid>
+
+      <ion-buttons>
+        <button ion-button block>
+          Criar Evento
+        </button>
+      </ion-buttons>
     </ion-list>
   </form>
 </ion-content>

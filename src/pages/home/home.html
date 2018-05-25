@@ -13,12 +13,23 @@
 </ion-header>
 
 <ion-content padding>
+	<form #f="ngForm" (ngSubmit)="MudarCidade(f)">
+		<ion-list>
+			<ion-item>
+				<ion-label>Cidades</ion-label>
+				<ion-select name="Cidade" ngModel>
+					<ion-option *ngFor="let c of cidades | async" [value]="c.cidade">{{ c.cidade }}</ion-option>
+				</ion-select>
+			</ion-item>
+		</ion-list>
+		<button ion-button>Mudar</button>
+	</form>
 
 	<ion-card *ngFor="let c of festas | async" (click)="detalhes(c.id, c.Titulo)">
 
 		<ion-item>
 			<ion-avatar item-start>
-				<img src="https://kanto.legiaodosherois.com.br/w750-h393-gnw-cfill-q80/wp-content/uploads/2017/04/legiao_ue1qm9fOCxZKzARd5PnoMDjytrG_sbLFlcEB4kN2YX.png.jpeg">
+				<img [src]="c.imgAvatar">
 			</ion-avatar>
 			<h2>{{c.Titulo}}</h2>
 			<p>Aberto das {{c.HorarioInicio}}h as {{c.HorarioFim}}h</p>
@@ -26,7 +37,7 @@
 
 
 
-		<img src="https://kanto.legiaodosherois.com.br/w750-h393-gnw-cfill-q80/wp-content/uploads/2017/04/legiao_ue1qm9fOCxZKzARd5PnoMDjytrG_sbLFlcEB4kN2YX.png.jpeg">
+		<img [src]="c.imgCapa">
 
 		<ion-card-content>
 			<h4>

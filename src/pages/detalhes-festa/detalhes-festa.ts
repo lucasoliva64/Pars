@@ -9,6 +9,7 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { Usuario } from '../../model/usuario';
 import { NavParams } from 'ionic-angular';
 import { DetalhesPerfilPage } from '../detalhes-perfil/detalhes-perfil';
+import { PerfilPage } from '../perfil/perfil';
 
 
 
@@ -62,6 +63,15 @@ export class DetalhesFestaPage {
     db.collection('usuarios').doc<Usuario>(uid).valueChanges().subscribe((usuario) => {
       this.perfil = usuario;
     });
+  }
+
+  perfil2() {
+    this.navCtrl.push(PerfilPage); //pop()
+
+  }
+
+  public logout(): void {
+    this.afAuth.auth.signOut();
   }
 
   detalhePerfil(cid) {
