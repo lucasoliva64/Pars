@@ -20,16 +20,17 @@
 
 		<div class="bg-img">
 			<img [src]="c.imagem">
-			<h2><span class='spacer'>{{c.nome}} &nbsp;&nbsp;&nbsp;    
-<ion-icon icon-left *ngIf="c.genero == 'Masculino'" name="male"></ion-icon>
-<ion-icon *ngIf="c.genero == 'Feminino'" name="female"></ion-icon>
+			<h2>
+				<span class='spacer'>{{c.nome}} &nbsp;&nbsp;&nbsp;
+					<ion-icon icon-left *ngIf="c.genero == 'Masculino'" name="male"></ion-icon>
+					<ion-icon *ngIf="c.genero == 'Feminino'" name="female"></ion-icon>
 
-</span></h2>
+				</span>
+			</h2>
 		</div>
 
 		<h6>Sobre {{c.nome}} </h6>
 		<p>{{c.sobre}}</p>
-
 
 		<ion-grid>
 			<ion-row>
@@ -37,10 +38,10 @@
 				<ion-col>
 					<ion-buttons>
 						<button ion-button outline (click)="addContato(c.uid)">
-          <ion-icon  name="person-add"></ion-icon>
-          &nbsp;&nbsp; Adicionar aos contatos  
-          
-        </button>
+							<ion-icon name="person-add"></ion-icon>
+							&nbsp;&nbsp; Adicionar aos contatos
+
+						</button>
 					</ion-buttons>
 				</ion-col>
 				<ion-col></ion-col>

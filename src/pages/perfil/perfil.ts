@@ -65,12 +65,18 @@ export class PerfilPage {
 
   }
 
+  public logout(): void {
+    this.afAuth.auth.signOut();
+  }
 
   salvar(form: NgForm) {
+    let loading = this.loadCtrl.create();
+
     let alert = this.alertCtrl.create({
       title: 'Perfil atualizado com sucesso!',
       buttons: ['Ok']
     });
+    alert.present();
     if (this.imagem != undefined) {
       let nome = this.afAuth.auth.currentUser.uid + ".jpg";
       var imgRef = firebase.app().storage('gs://ionic-festa.appspot.com').ref().child('usuarios').child(nome);
@@ -93,6 +99,7 @@ export class PerfilPage {
               genero: usuario.genero,
               imagem: usuario.imagem
             }).then(function () {
+              loading.dismiss();
               alert.present();
             });
       });
@@ -111,6 +118,7 @@ export class PerfilPage {
             sobre: usuario.sobre,
             genero: usuario.genero,
           }).then(function () {
+            loading.dismiss();
             alert.present();
           });
     }

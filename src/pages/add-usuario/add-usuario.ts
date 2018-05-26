@@ -44,12 +44,28 @@ export class AddUsuarioPage {
 
       })
       .catch((error) => {
+        let erro = "";
+        switch(error.code){
+          case "auth/email-already-in-use":
+            erro = "O email já está sendo usado.";
+          break;
+          case "auth/invalid-email":
+            erro = "Email inválido.";
+          break;
+          case "auth/weak-password":
+            erro = "Senha muito fraca.";
+          break;
+          default:
+            erro = "Ocorreu um erro ao cadastrar.";
+        }
+
         this.alertuCrtl.create({
           title: "Erro no registro",
-          subTitle: error.message,
-          buttons: ["ok"]
+          subTitle: erro,
+          buttons:["Ok"]
         }).present();
       })
+
 
   }
 }

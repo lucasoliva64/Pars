@@ -3,31 +3,38 @@
 		<ion-title>Contatos</ion-title>
 		<ion-buttons start>
 			<button ion-button icon-only (click)="perfil()">
-        <ion-icon name="contact"></ion-icon>          
-      </button>
+				<ion-icon name="contact"></ion-icon>
+			</button>
 			<button ion-button icon-only (click)="logout()">
-        <ion-icon name="exit"></ion-icon>    
-      </button>
+				<ion-icon name="exit"></ion-icon>
+			</button>
 		</ion-buttons>
 	</ion-navbar>
 </ion-header>
 <ion-content>
+	<ion-searchbar (ionInput)="buscar($event)"></ion-searchbar>
+	<ion-list>
 
+		<ion-item *ngFor="let c of busca | async" (click)="perfilDetalhes(c.uid)">
 
-	<ion-list >
-
-	<ion-item  *ngFor="let c of lista | async" >
-   
-			<ion-avatar item-start (click)="perfilDetalhes(c.uid)">
-				<img [src]="c.imagem"   />
+			<ion-avatar item-start>
+				<img [src]="c.imagem" />
 			</ion-avatar>
-   <div (click)="openChat(c.uid, c.nome)">  
-			<h2>{{c.nome}}</h2>
-</div>
-		</ion-item>  
+			<div>
+				<h2>{{c.nome}}</h2>
+			</div>
+		</ion-item>
+	</ion-list>
 
-        
-
+	<ion-list>
+		<ion-item *ngFor="let c of lista | async">
+			<ion-avatar item-start (click)="perfilDetalhes(c.uid)">
+				<img [src]="c.imagem" />
+			</ion-avatar>
+			<div (click)="openChat(c.uid, c.nome)">
+				<h2>{{c.nome}}</h2>
+			</div>
+		</ion-item>
 	</ion-list>
 
 </ion-content>

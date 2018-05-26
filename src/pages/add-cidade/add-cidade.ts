@@ -26,4 +26,6 @@ export class AddCidadePage {
       this.navCtrl.pop();
     });
   }
+
+
 }

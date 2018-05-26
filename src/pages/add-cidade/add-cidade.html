@@ -7,18 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>addCidade</ion-title>
+    <ion-title>Adicionar Cidade</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-  <ion-list inset>
-    <ion-label *ngFor="let c of cidades | async">
-      {{ c.nome }}
-    </ion-label>
-  </ion-list>
+
   <form #f="ngForm" (ngSubmit)="add(f)">
     <ion-list inset>
         <ion-item>
@@ -28,5 +23,11 @@
         <button type="submit" ion-button block>Adicionar</button>
     </ion-list>
   </form>
+
+      <ion-list inset>
+        <ion-label *ngFor="let c of cidades | async">
+          {{ c.cidade }}
+        </ion-label>
+      </ion-list>
 
 </ion-content>

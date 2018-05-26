@@ -32,10 +32,10 @@ export class DetalhesPerfilPage {
 
   }
 
-  public logout() : void {
+  public logout(): void {
     this.afAuth.auth.signOut();
   }
-  
+
 
   addContato(id) {
 
@@ -78,14 +78,7 @@ export class DetalhesPerfilPage {
 
           });
         });
-
-
-
-
     });
-
-
-
 
   }
 

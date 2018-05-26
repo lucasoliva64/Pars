@@ -13,19 +13,18 @@
 </ion-header>
 
 <ion-content padding>
-	<form #f="ngForm" (ngSubmit)="MudarCidade(f)">
+	<form #f="ngForm">
 		<ion-list>
 			<ion-item>
 				<ion-label>Cidades</ion-label>
-				<ion-select name="Cidade" ngModel>
+				<ion-select (ionChange)="MudarCidade(f)" name="Cidade" ngModel>
 					<ion-option *ngFor="let c of cidades | async" [value]="c.cidade">{{ c.cidade }}</ion-option>
 				</ion-select>
 			</ion-item>
 		</ion-list>
-		<button ion-button>Mudar</button>
 	</form>
 
-	<ion-card *ngFor="let c of festas | async" (click)="detalhes(c.id, c.Titulo)">
+	<ion-card *ngFor="let c of festas | async" (click)="detalhes(c)">
 
 		<ion-item>
 			<ion-avatar item-start>
@@ -37,7 +36,7 @@
 
 
 
-		<img [src]="c.imgCapa">
+		<img class="imgCapa" [src]="c.imgCapa">
 
 		<ion-card-content>
 			<h4>

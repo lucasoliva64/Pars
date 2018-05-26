@@ -8,6 +8,11 @@
       <button ion-button icon-only (click)="logout()">
         <ion-icon name="exit"></ion-icon>
       </button>
+
+        <button>
+      <i ion-button block (click)="addCidade()">Adicionar cidade</i>
+    </button>
+
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -20,36 +25,10 @@
 
 <ion-content>
   <form #f="ngForm" (ngSubmit)="AdicionarFesta(f)">
-    <ion-list inset>
+    <ion-list >
 
 
-      <ion-card>
-
-        <ion-item>
-          <ion-avatar item-start>
-            <img [src]="imagemAvatar">
-          </ion-avatar>
-          <h2>Exemplo de Festa</h2>
-          <p>Horario:</p>
-        </ion-item>
-
-
-
-        <img [src]="imagemFesta">
-
-        <ion-card-content>
-          <h4>
-            Endereço:
-          </h4>
-
-        </ion-card-content>
-
-        <ion-row>
-          <ion-col text-right>
-          </ion-col>
-        </ion-row>
-
-      </ion-card>
+     
 
 
 
@@ -64,16 +43,16 @@
         <ion-label floating>Dias de Funcionamento</ion-label>
         <ion-input type="text" name="DiasFuncionamento" ngModel></ion-input>
       </ion-item>
-
-      <ion-list>
+<br/>
+     
           <ion-item>
             <ion-label>Cidades</ion-label>
             <ion-select name="Cidade" ngModel>       
               <ion-option *ngFor="let c of cidades | async" [value]="c.cidade">{{ c.cidade }}</ion-option>
             </ion-select>
           </ion-item>
-        </ion-list>
-        <a ion-button block (click)="addCidade()">Adicionar cidade</a>
+    
+
 
       <ion-item>
         <ion-label floating>Local</ion-label>
@@ -95,7 +74,6 @@
         <ion-label floating>Descrição</ion-label>
         <ion-input type="text" name="Descricao" ngModel></ion-input>
       </ion-item>
-
 
 
 
@@ -128,6 +106,38 @@
 
 
 
+
+
+        <br/>
+
+        <ion-card>
+        
+          <ion-item>
+            <ion-avatar item-start>
+              <img [src]="imagemAvatar">
+            </ion-avatar>
+            <h2>Exemplo de Festa</h2>
+            <p>Horario:</p>
+          </ion-item>
+        
+        
+        
+          <img [src]="imagemFesta">
+        
+          <ion-card-content>
+            <h4>
+              Endereço:
+            </h4>
+        
+          </ion-card-content>
+        
+          <ion-row>
+            <ion-col text-right>
+            </ion-col>
+          </ion-row>
+        
+        </ion-card>
+        
 
 
         <ion-buttons>

@@ -12,6 +12,7 @@ import { NavController, AlertController } from 'ionic-angular';
 })
 export class LoginPage {
 
+  alertControl: any;
   constructor(public navCtrl: NavController,
     public afAuth: AngularFireAuth,
     private alertCtrl: AlertController, ) {
@@ -46,13 +47,30 @@ export class LoginPage {
         this.navCtrl.setRoot(HomePage);
       })
       .catch(error => {
+        let msg;
+        switch (error.code) { 
+          case "auth/wrong-password":
+            msg= "Senha inválida para o e-mail digitado.";
+            break;
+
+          case "auth/user-not-found":
+            msg= 'Usuário não encontrado'
+            break;
+
+          case "auth/invalid-email":
+            msg= 'E-mail inválido.';
+            break;
+          default:
+            msg = "Ocorreu um erro ao tentar logar.";
+        }
+
         let alerta = {
           title: 'Falha no acesso',
-          subTitle: error.code,
+          subTitle: msg,
           buttons: ["Ok"]
         }
         this.alertCtrl.create(alerta).present();
-      });
+      })
   }
 
 }

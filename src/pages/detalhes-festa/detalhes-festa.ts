@@ -20,7 +20,7 @@ import { PerfilPage } from '../perfil/perfil';
 export class DetalhesFestaPage {
 
   detalhes: string = "sobre";
-  festaId: string;
+
   festaTitulo: string;
   public Comentarios: Observable<Comentarios[]>;
 
@@ -32,7 +32,7 @@ export class DetalhesFestaPage {
   ano: number = new Date().getFullYear();
   data: string;
   public perfil: Usuario;
-  public detalheFesta: Festa;
+  public detalheFesta: Festa = {};
 
   constructor(public navCtrl: NavController,
     public db: AngularFirestore,
@@ -41,23 +41,28 @@ export class DetalhesFestaPage {
     public loadCtrl: LoadingController) {
     if (this.hora >= 0 && this.hora <= 3) {
       this.dia = this.dia - 1;
-    }
 
+  
+    }
+    this.detalheFesta.Titulo = navParams.get('Titulo');
+    this.detalheFesta.imgCapa = navParams.get('imgCapa');
+    this.detalheFesta.id = navParams.get('id');
+    
     this.data = this.ano.toString() + "-" + this.mes.toString() + "-" + this.dia.toString();
 
-    this.festaId = navParams.get('id');
-    this.festaTitulo = navParams.get('titulo');
+
+
     let uid = this.afAuth.auth.currentUser.uid;
     
     this.festa = db.collection<Festa>
-      ('festas', ref => ref.where('id', '==', this.festaId))
+      ('festas', ref => ref.where('id', '==', this.detalheFesta.id))
       .valueChanges();
 
-    this.Comentarios = db.collection<Comentarios>('comentarios', ref => ref.where("idFesta", '==', this.festaId))
+    this.Comentarios = db.collection<Comentarios>('comentarios', ref => ref.where("idFesta", '==', this.detalheFesta.id))
     .valueChanges();
 
     this.listaConfirmados = db.collection<Usuario>
-      ('usuarios', ref => ref.where(this.festaId, '==', this.data))
+      ('usuarios', ref => ref.where(this.detalheFesta.id, '==', this.data))
       .valueChanges();
 
     db.collection('usuarios').doc<Usuario>(uid).valueChanges().subscribe((usuario) => {

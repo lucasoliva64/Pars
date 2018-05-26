@@ -9,13 +9,9 @@ import { Festa } from '../../model/festa';
 import { AngularFirestore } from 'angularfire2/firestore' //firestore importar
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs';
 
-/**
- * Generated class for the HomePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 
 @Component({
@@ -27,19 +23,24 @@ export class HomePage {
   public cidades: Observable<Cidades[]>;
   public festas: Observable<Festa[]>;
 
-  public cidade: any;
+
   public usuario: Usuario;
 
-
+  public cidade = new Subject<string>();
 
   pessoa: number;
 
   constructor(public navCtrl: NavController, public db: AngularFirestore, public afAuth: AngularFireAuth) {
-    this.cidade = "São José do Rio Preto";
+
     let uid = this.afAuth.auth.currentUser.uid;
-    this.festas = db.collection<Festa>('festas', ref => ref.where("Cidade", '==', this.cidade))
-      .valueChanges();
     this.cidades = db.collection<Cidades>('cidades').valueChanges();
+
+    this.cidade.subscribe((cidade) => {
+
+      this.festas = this.db.collection<Festa>('festas', ref => ref.where("Cidade", '==', cidade)).valueChanges()
+    })
+    this.cidade.next('São José do Rio Preto');
+    
   }
 
   perfil() {
@@ -48,17 +49,17 @@ export class HomePage {
   }
 
   MudarCidade(form: NgForm) {
-    var cid = form.value.cidade;
-    this.festas.subscribe().unsubscribe();
-    console.log(form.value.Cidade)
-    this.festas = this.db.collection<Festa>('festas', ref => ref.where("Cidade", '==', cid))
-    .valueChanges();
+    var cid = form.value.Cidade;
+    console.log(cid);
+    this.cidade.next(cid);
+
   }
 
-  detalhes(id, titulo) {
+  detalhes(c) {
     this.navCtrl.push(DetalhesFestaPage, {
-      id: id,
-      titulo: titulo
+      id: c.id,
+      Titulo: c.Titulo,
+      imgCapa: c.imgCapa
     }); //pop()
   }
 
